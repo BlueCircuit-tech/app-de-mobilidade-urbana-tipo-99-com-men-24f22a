@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=375, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>MobLivre - Mobilidade Urbana Justa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#FFB300',   // Amarelo (referência apps de mobilidade do Brasil)
+              dark: '#CC8F00'
+            },
+            secondary: '#23272A',  // Escuro para contraste
+            fundo: '#F9FAFB',      // Cinza bem claro
+            destaque: '#00A859',   // Verde para confirmação e ações
+            alerta: '#EF4444',     // Vermelho para erros
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Montserrat', sans-serif; background: #F9FAFB; }
+    .ativo, [data-nav].ativo { color: #FFB300 !important; }
+    .nav-ic { font-size: 1.36rem; line-height: 1; }
+    .nav-label { font-size: 0.81rem; line-height: 1.1; }
+    .navbar { box-shadow: 0 -2px 18px -5px rgba(0,0,0,0.07); }
+    @media (min-width: 376px) {
+      body, html { width:375px;margin:auto; }
+    }
+  </style>
+</head>
+<body class="bg-fundo min-h-screen flex flex-col w-[375px] mx-auto">
+  <main class="flex-1 px-0">
+    <!-- TELAS -->
+  </main>
+  <nav class="navbar fixed bottom-0 left-0 right-0 w-[375px] mx-auto bg-white border-t z-50 flex justify-between items-center px-2 py-1">
+    <button data-nav="login-cadastro" onclick="mostrarTela('login-cadastro')" class="flex flex-col items-center flex-1 py-1">
+      <span class="nav-ic"><svg width="22" height="22" fill="none"><path d="M9.45 12.22a4.5 4.5 0 1 0-1.9 0C5.01 13.11 3 14.95 3 17v.55C3 18.35 3.65 19 4.45 19h13.1c.8 0 1.45-.65 1.45-1.45V17c0-2.05-2.01-3.89-4.55-4.78a4.5 4.5 0 1 0-1.9 0z" stroke="#23272A" stroke-width="1.5"/></svg></span>
+      <span class="nav-label">Login</span>
+    </button>
+    <button data-nav="home-do-passageiro-mapa" onclick="mostrarTela('home-do-passageiro-mapa')" class="flex flex-col items-center flex-1 py-1">
+      <span class="nav-ic"><svg width="22" height="22" fill="none"><path d="M11 2C6.03 2 2 6.03 2 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zm0 12.25a3.25 3.25 0 1 1 0-6.5 3.25 3.25 0 0 1 0 6.5z" stroke="#23272A" stroke-width="1.5"/></svg></span>
+      <span class="nav-label">Mapa</span>
+    </button>
+    <button data-nav="selecao-de-categoria-e-preco" onclick="mostrarTela('selecao-de-categoria-e-preco')" class="flex flex-col items-center flex-1 py-1">
+      <span class="nav-ic"><svg width="22" height="22" fill="none"><path d="M7.5 3A2.5 2.5 0 0 0 5 5.5V9c0 2.31 1.19 4.31 3 5.43m6.5-11.43A2.5 2.5 0 0 1 17 5.5V9c0 2.31-1.19 4.31-3 5.43M12 21c-4.97 0-9-4.03-9-9h18c0 4.97-4.03 9-9 9z" stroke="#23272A" stroke-width="1.5"/></svg></span>
+      <span class="nav-label">Categoria</span>
+    </button>
+    <button data-nav="acompanhamento-da-corrida" onclick="mostrarTela('acompanhamento-da-corrida')" class="flex flex-col items-center flex-1 py-1">
+      <span class="nav-ic"><svg width="22" height="22" fill="none"><circle cx="11" cy="11" r="9" stroke="#23272A" stroke-width="1.5"/><path d="M11 6v6l5 3" stroke="#23272A" stroke-width="1.5"/></svg></span>
+      <span class="nav-label">Corrida</span>
+    </button>
+    <button data-nav="chat-passageiro-motorista" onclick="mostrarTela('chat-passageiro-motorista')" class="flex flex-col items-center flex-1 py-1">
+      <span class="nav-ic"><svg width="22" height="22" fill="none"><path d="M18 14a4.02 4.02 0 0 1-4 4H7l-4 3V6a4 4 0 0 1 4-4h7a4 4 0 0 1 4 4z" stroke="#23272A" stroke-width="1.5"/></svg></span>
+      <span class="nav-label">Chat</span>
+    </button>
+    <button data-nav="entrega-com-codigo-de-confirmacao" onclick="mostrarTela('entrega-com-codigo-de-confirmacao')" class="flex flex-col items-center flex-1 py-1">
+      <span class="nav-ic"><svg width="22" height="22" fill="none"><rect x="3" y="8" width="16" height="7" rx="2" stroke="#23272A" stroke-width="1.5"/><path d="M6 8V6a5 5 0 0 1 10 0v2" stroke="#23272A" stroke-width="1.5"/></svg></span>
+      <span class="nav-label">Entrega</span>
+    </button>
+  </nav>
+  <script>
+    function mostrarTela(id) {
+      document.querySelectorAll('[data-tela]').forEach(function (s) {
+        s.classList.toggle('hidden', s.dataset.tela !== id);
+      });
+      document.querySelectorAll('[data-nav]').forEach(function (b) {
+        b.classList.toggle('ativo', b.dataset.nav === id);
+      });
+      window.scrollTo({ top: 0 });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      mostrarTela('login-cadastro');
+    });
+  </script>
+</body>
+</html>
