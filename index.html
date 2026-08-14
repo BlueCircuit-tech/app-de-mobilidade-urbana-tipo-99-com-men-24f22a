@@ -40,6 +40,362 @@
 </head>
 <body class="bg-fundo min-h-screen flex flex-col w-[375px] mx-auto">
   <main class="flex-1 px-0">
+    <section data-tela="login-cadastro" class="hidden">
+  <div class="min-h-screen bg-white flex flex-col">
+    <!-- Header -->
+    <div class="bg-[#FFD93D] px-6 pt-12 pb-8 rounded-b-3xl shadow-sm">
+      <div class="flex items-center justify-center mb-2">
+        <svg class="w-12 h-12 text-[#212121]" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="#212121" stroke-width="3" fill="none"/>
+          <path d="M14 24C14 18.477 18.477 14 24 14C29.523 14 34 18.477 34 24" stroke="#212121" stroke-width="3" stroke-linecap="round"/>
+          <path d="M34 24C34 29.523 29.523 34 24 34" stroke="#212121" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="24" cy="24" r="3" fill="#212121"/>
+        </svg>
+      </div>
+      <h1 class="text-2xl font-extrabold text-[#212121] text-center tracking-tight" style="font-family: 'Segoe UI', system-ui, sans-serif">DrivePlus</h1>
+      <p class="text-[#212121]/70 text-center text-sm mt-1" style="font-family: 'Segoe UI', system-ui, sans-serif">Sem comissão. Sem complicação.</p>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="flex-1 px-5 pt-6 pb-8 overflow-y-auto">
+      <!-- Abas Login / Cadastro -->
+      <div class="flex bg-gray-100 rounded-xl p-1 mb-5">
+        <button onclick="login_cadastro_alternarAba('login')" id="aba-login" class="flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 bg-white text-[#212121] shadow-sm" style="font-family: 'Segoe UI', system-ui, sans-serif">Entrar</button>
+        <button onclick="login_cadastro_alternarAba('cadastro')" id="aba-cadastro" class="flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 text-gray-500" style="font-family: 'Segoe UI', system-ui, sans-serif">Cadastrar</button>
+      </div>
+
+      <!-- FORMULÁRIO DE LOGIN -->
+      <div id="form-login" class="space-y-4">
+        <!-- Seleção de tipo de conta -->
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2" style="font-family: 'Segoe UI', system-ui, sans-serif">Você é</p>
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <button onclick="login_cadastro_selecionarTipo('passageiro')" id="tipo-passageiro-login" class="login_cadastro_tipo-btn relative border-2 border-[#FFD93D] bg-[#FFD93D]/5 rounded-xl p-3.5 text-center transition-all duration-200 hover:shadow-md">
+            <svg class="w-7 h-7 mx-auto mb-1.5 text-[#212121]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2.5"/><path d="M5 20c0-3.87 3.13-7 7-7s7 3.13 7 7"/></svg>
+            <span class="text-sm font-bold text-[#212121]" style="font-family: 'Segoe UI', system-ui, sans-serif">Passageiro</span>
+          </button>
+          <button onclick="login_cadastro_selecionarTipo('motorista')" id="tipo-motorista-login" class="login_cadastro_tipo-btn relative border-2 border-gray-200 bg-white rounded-xl p-3.5 text-center transition-all duration-200 hover:shadow-md">
+            <svg class="w-7 h-7 mx-auto mb-1.5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M5 10h14"/></svg>
+            <span class="text-sm font-bold text-gray-600" style="font-family: 'Segoe UI', system-ui, sans-serif">Motorista</span>
+          </button>
+        </div>
+
+        <!-- Campos de login -->
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1.5" style="font-family: 'Segoe UI', system-ui, sans-serif">E-mail ou telefone</label>
+            <div class="relative">
+              <svg class="w-5 h-5 absolute left-3.5 top-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg>
+              <input type="text" id="login-email" placeholder="seu@email.com ou (11) 99999-9999" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-[#212121] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFD93D] focus:border-transparent transition-all" style="font-family: 'Segoe UI', system-ui, sans-serif">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1.5" style="font-family: 'Segoe UI', system-ui, sans-serif">Senha</label>
+            <div class="relative">
+              <svg class="w-5 h-5 absolute left-3.5 top-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="12" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3"/></svg>
+              <input type="password" id="login-senha" placeholder="Sua senha" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-[#212121] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFD93D] focus:border-transparent transition-all" style="font-family: 'Segoe UI', system-ui, sans-serif">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-1">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-[#FFD93D] focus:ring-[#FFD93D] accent-[#FFD93D]">
+            <span class="text-xs text-gray-500" style="font-family: 'Segoe UI', system-ui, sans-serif">Lembrar de mim</span>
+          </label>
+          <button class="text-xs font-semibold text-[#FFD93D] hover:text-[#e6c42e] transition-colors" style="font-family: 'Segoe UI', system-ui, sans-serif; -webkit-text-stroke: 0.2px #212121">Esqueci a senha</button>
+        </div>
+
+        <button onclick="login_cadastro_fazerLogin()" class="w-full bg-[#FFD93D] text-[#212121] font-bold py-3.5 rounded-xl text-sm hover:bg-[#e6c42e] active:scale-[0.97] transition-all duration-150 shadow-md" style="font-family: 'Segoe UI', system-ui, sans-serif">
+          Entrar
+        </button>
+      </div>
+
+      <!-- FORMULÁRIO DE CADASTRO -->
+      <div id="form-cadastro" class="hidden space-y-4">
+        <!-- Seleção de tipo de conta -->
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2" style="font-family: 'Segoe UI', system-ui, sans-serif">Crie sua conta como</p>
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <button onclick="login_cadastro_selecionarTipoCadastro('passageiro')" id="tipo-passageiro-cadastro" class="login_cadastro_tipo-btn-cad relative border-2 border-[#FFD93D] bg-[#FFD93D]/5 rounded-xl p-3.5 text-center transition-all duration-200 hover:shadow-md">
+            <svg class="w-7 h-7 mx-auto mb-1.5 text-[#212121]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2.5"/><path d="M5 20c0-3.87 3.13-7 7-7s7 3.13 7 7"/></svg>
+            <span class="text-sm font-bold text-[#212121]" style="font-family: 'Segoe UI', system-ui, sans-serif">Passageiro</span>
+          </button>
+          <button onclick="login_cadastro_selecionarTipoCadastro('motorista')" id="tipo-motorista-cadastro" class="login_cadastro_tipo-btn-cad relative border-2 border-gray-200 bg-white rounded-xl p-3.5 text-center transition-all duration-200 hover:shadow-md">
+            <svg class="w-7 h-7 mx-auto mb-1.5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M5 10h14"/></svg>
+            <span class="text-sm font-bold text-gray-600" style="font-family: 'Segoe UI', system-ui, sans-serif">Motorista</span>
+          </button>
+        </div>
+
+        <!-- Campos de cadastro -->
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1.5" style="font-family: 'Segoe UI', system-ui, sans-serif">Nome completo</label>
+            <div class="relative">
+              <svg class="w-5 h-5 absolute left-3.5 top-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M4 20c0-4.42 3.58-8 8-8s8 3.58 8 8"/></svg>
+              <input type="text" id="cad-nome" placeholder="Seu nome completo" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-[#212121] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFD93D] focus:border-transparent transition-all" style="font-family: 'Segoe UI', system-ui, sans-serif">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1.5" style="font-family: 'Segoe UI', system-ui, sans-serif">E-mail</label>
+            <div class="relative">
+              <svg class="w-5 h-5 absolute left-3.5 top-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg>
+              <input type="email" id="cad-email" placeholder="seu@email.com" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-[#212121] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFD93D] focus:border-transparent transition-all" style="font-family: 'Segoe UI', system-ui, sans-serif">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1.5" style="font-family: 'Segoe UI', system-ui, sans-serif">Telefone</label>
+            <div class="relative">
+              <svg class="w-5 h-5 absolute left-3.5 top-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+              <input type="tel" id="cad-telefone" placeholder="(11) 99999-9999" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-[#212121] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFD93D] focus:border-transparent transition-all" style="font-family: 'Segoe UI', system-ui, sans-serif">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1.5" style="font-family: 'Segoe UI', system-ui, sans-serif">Senha</label>
+            <div class="relative">
+              <svg class="w-5 h-5 absolute left-3.5 top-3 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="12" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3"/></svg>
+              <input type="password" id="cad-senha" placeholder="Mínimo 6 caracteres" class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm text-[#212121] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FFD93D] focus:border-transparent transition-all" style="font-family: 'Segoe UI', system-ui, sans-serif">
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-2 pt-1">
+          <input type="checkbox" id="cad-termos" class="w-4 h-4 mt-0.5 rounded border-gray-300 text-[#FFD93D] focus:ring-[#FFD93D] accent-[#FFD93D]">
+          <span class="text-xs text-gray-500 leading-relaxed" style="font-family: 'Segoe UI', system-ui, sans-serif">Li e aceito os <button class="text-[#FFD93D] font-semibold underline">Termos de Uso</button> e a <button class="text-[#FFD93D] font-semibold underline">Política de Privacidade</button></span>
+        </div>
+
+        <button onclick="login_cadastro_fazerCadastro()" class="w-full bg-[#FFD93D] text-[#212121] font-bold py-3.5 rounded-xl text-sm hover:bg-[#e6c42e] active:scale-[0.97] transition-all duration-150 shadow-md" style="font-family: 'Segoe UI', system-ui, sans-serif">
+          Criar Conta
+        </button>
+      </div>
+
+      <!-- Divisor social -->
+      <div class="flex items-center gap-3 my-6">
+        <div class="flex-1 h-px bg-gray-200"></div>
+        <span class="text-xs text-gray-400 font-medium" style="font-family: 'Segoe UI', system-ui, sans-serif">ou entre com</span>
+        <div class="flex-1 h-px bg-gray-200"></div>
+      </div>
+
+      <!-- Botões sociais -->
+      <div class="grid grid-cols-2 gap-3">
+        <button onclick="login_cadastro_loginSocial('google')" class="flex items-center justify-center gap-2 border border-gray-200 rounded-xl py-3 hover:bg-gray-50 active:scale-[0.97] transition-all duration-150">
+          <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <span class="text-sm font-semibold text-gray-700" style="font-family: 'Segoe UI', system-ui, sans-serif">Google</span>
+        </button>
+        <button onclick="login_cadastro_loginSocial('apple')" class="flex items-center justify-center gap-2 border border-gray-200 rounded-xl py-3 hover:bg-gray-50 active:scale-[0.97] transition-all duration-150">
+          <svg class="w-5 h-5 text-gray-800" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <span class="text-sm font-semibold text-gray-700" style="font-family: 'Segoe UI', system-ui, sans-serif">Apple</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Toast de sucesso -->
+    <div id="login-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#212121] text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 opacity-0 pointer-events-none transition-all duration-300 translate-y-4 z-50">
+      <svg class="w-5 h-5 text-[#FFD93D]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>
+      <span id="login-toast-msg" class="text-sm font-semibold" style="font-family: 'Segoe UI', system-ui, sans-serif"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    // Estado interno
+    let tipoConta = null; // 'passageiro' | 'motorista'
+
+    function login_cadastro_alternarAba(aba) {
+      const formLogin = document.getElementById('form-login');
+      const formCadastro = document.getElementById('form-cadastro');
+      const btnLogin = document.getElementById('aba-login');
+      const btnCadastro = document.getElementById('aba-cadastro');
+
+      if (aba === 'login') {
+        formLogin.classList.remove('hidden');
+        formCadastro.classList.add('hidden');
+        btnLogin.classList.add('bg-white', 'text-[#212121]', 'shadow-sm');
+        btnLogin.classList.remove('text-gray-500');
+        btnCadastro.classList.remove('bg-white', 'text-[#212121]', 'shadow-sm');
+        btnCadastro.classList.add('text-gray-500');
+      } else {
+        formLogin.classList.add('hidden');
+        formCadastro.classList.remove('hidden');
+        btnCadastro.classList.add('bg-white', 'text-[#212121]', 'shadow-sm');
+        btnCadastro.classList.remove('text-gray-500');
+        btnLogin.classList.remove('bg-white', 'text-[#212121]', 'shadow-sm');
+        btnLogin.classList.add('text-gray-500');
+      }
+    }
+
+    function login_cadastro_selecionarTipo(tipo) {
+      tipoConta = tipo;
+      const btnP = document.getElementById('tipo-passageiro-login');
+      const btnM = document.getElementById('tipo-motorista-login');
+
+      if (tipo === 'passageiro') {
+        btnP.classList.add('border-[#FFD93D]', 'bg-[#FFD93D]/5');
+        btnP.classList.remove('border-gray-200', 'bg-white');
+        btnP.querySelector('svg').classList.remove('text-gray-400');
+        btnP.querySelector('svg').classList.add('text-[#212121]');
+        btnP.querySelector('span').classList.remove('text-gray-600');
+        btnP.querySelector('span').classList.add('text-[#212121]');
+
+        btnM.classList.remove('border-[#FFD93D]', 'bg-[#FFD93D]/5');
+        btnM.classList.add('border-gray-200', 'bg-white');
+        btnM.querySelector('svg').classList.remove('text-[#212121]');
+        btnM.querySelector('svg').classList.add('text-gray-400');
+        btnM.querySelector('span').classList.remove('text-[#212121]');
+        btnM.querySelector('span').classList.add('text-gray-600');
+      } else {
+        btnM.classList.add('border-[#FFD93D]', 'bg-[#FFD93D]/5');
+        btnM.classList.remove('border-gray-200', 'bg-white');
+        btnM.querySelector('svg').classList.remove('text-gray-400');
+        btnM.querySelector('svg').classList.add('text-[#212121]');
+        btnM.querySelector('span').classList.remove('text-gray-600');
+        btnM.querySelector('span').classList.add('text-[#212121]');
+
+        btnP.classList.remove('border-[#FFD93D]', 'bg-[#FFD93D]/5');
+        btnP.classList.add('border-gray-200', 'bg-white');
+        btnP.querySelector('svg').classList.remove('text-[#212121]');
+        btnP.querySelector('svg').classList.add('text-gray-400');
+        btnP.querySelector('span').classList.remove('text-[#212121]');
+        btnP.querySelector('span').classList.add('text-gray-600');
+      }
+    }
+
+    function login_cadastro_selecionarTipoCadastro(tipo) {
+      tipoConta = tipo;
+      const btnP = document.getElementById('tipo-passageiro-cadastro');
+      const btnM = document.getElementById('tipo-motorista-cadastro');
+
+      if (tipo === 'passageiro') {
+        btnP.classList.add('border-[#FFD93D]', 'bg-[#FFD93D]/5');
+        btnP.classList.remove('border-gray-200', 'bg-white');
+        btnP.querySelector('svg').classList.remove('text-gray-400');
+        btnP.querySelector('svg').classList.add('text-[#212121]');
+        btnP.querySelector('span').classList.remove('text-gray-600');
+        btnP.querySelector('span').classList.add('text-[#212121]');
+
+        btnM.classList.remove('border-[#FFD93D]', 'bg-[#FFD93D]/5');
+        btnM.classList.add('border-gray-200', 'bg-white');
+        btnM.querySelector('svg').classList.remove('text-[#212121]');
+        btnM.querySelector('svg').classList.add('text-gray-400');
+        btnM.querySelector('span').classList.remove('text-[#212121]');
+        btnM.querySelector('span').classList.add('text-gray-600');
+      } else {
+        btnM.classList.add('border-[#FFD93D]', 'bg-[#FFD93D]/5');
+        btnM.classList.remove('border-gray-200', 'bg-white');
+        btnM.querySelector('svg').classList.remove('text-gray-400');
+        btnM.querySelector('svg').classList.add('text-[#212121]');
+        btnM.querySelector('span').classList.remove('text-gray-600');
+        btnM.querySelector('span').classList.add('text-[#212121]');
+
+        btnP.classList.remove('border-[#FFD93D]', 'bg-[#FFD93D]/5');
+        btnP.classList.add('border-gray-200', 'bg-white');
+        btnP.querySelector('svg').classList.remove('text-[#212121]');
+        btnP.querySelector('svg').classList.add('text-gray-400');
+        btnP.querySelector('span').classList.remove('text-[#212121]');
+        btnP.querySelector('span').classList.add('text-gray-600');
+      }
+    }
+
+    function login_cadastro_mostrarToast(msg) {
+      const toast = document.getElementById('login-toast');
+      const toastMsg = document.getElementById('login-toast-msg');
+      toastMsg.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(function() {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2200);
+    }
+
+    function login_cadastro_fazerLogin() {
+      const email = document.getElementById('login-email').value.trim();
+      const senha = document.getElementById('login-senha').value.trim();
+
+      if (!tipoConta) {
+        login_cadastro_mostrarToast('Selecione Passageiro ou Motorista');
+        return;
+      }
+      if (!email) {
+        login_cadastro_mostrarToast('Informe seu e-mail ou telefone');
+        return;
+      }
+      if (!senha || senha.length < 4) {
+        login_cadastro_mostrarToast('Informe sua senha');
+        return;
+      }
+
+      // Simula login
+      login_cadastro_mostrarToast('Login realizado com sucesso!');
+      setTimeout(function() {
+        if (tipoConta === 'passageiro') {
+          mostrarTela('home-do-passageiro-mapa');
+        } else {
+          mostrarTela('selecao-de-categoria-e-preco');
+        }
+      }, 800);
+    }
+
+    function login_cadastro_fazerCadastro() {
+      const nome = document.getElementById('cad-nome').value.trim();
+      const email = document.getElementById('cad-email').value.trim();
+      const telefone = document.getElementById('cad-telefone').value.trim();
+      const senha = document.getElementById('cad-senha').value.trim();
+      const termos = document.getElementById('cad-termos').checked;
+
+      if (!tipoConta) {
+        login_cadastro_mostrarToast('Selecione Passageiro ou Motorista');
+        return;
+      }
+      if (!nome || nome.length < 3) {
+        login_cadastro_mostrarToast('Informe seu nome completo');
+        return;
+      }
+      if (!email || !email.includes('@')) {
+        login_cadastro_mostrarToast('Informe um e-mail válido');
+        return;
+      }
+      if (!telefone || telefone.length < 10) {
+        login_cadastro_mostrarToast('Informe seu telefone');
+        return;
+      }
+      if (!senha || senha.length < 6) {
+        login_cadastro_mostrarToast('A senha deve ter ao menos 6 caracteres');
+        return;
+      }
+      if (!termos) {
+        login_cadastro_mostrarToast('Aceite os Termos de Uso');
+        return;
+      }
+
+      login_cadastro_mostrarToast('Conta criada! Bem-vindo ao DrivePlus');
+      setTimeout(function() {
+        if (tipoConta === 'passageiro') {
+          mostrarTela('home-do-passageiro-mapa');
+        } else {
+          mostrarTela('selecao-de-categoria-e-preco');
+        }
+      }, 800);
+    }
+
+    function login_cadastro_loginSocial(provedor) {
+      // Seleciona tipo padrão como passageiro se ainda não escolheu
+      if (!tipoConta) {
+        tipoConta = 'passageiro';
+        login_cadastro_selecionarTipo('passageiro');
+        login_cadastro_selecionarTipoCadastro('passageiro');
+      }
+      login_cadastro_mostrarToast('Entrando com ' + provedor + '...');
+      setTimeout(function() {
+        if (tipoConta === 'passageiro') {
+          mostrarTela('home-do-passageiro-mapa');
+        } else {
+          mostrarTela('selecao-de-categoria-e-preco');
+        }
+      }, 800);
+    }
+  })();
+</script>
+
     <!-- TELAS -->
   </main>
   <nav class="navbar fixed bottom-0 left-0 right-0 w-[375px] mx-auto bg-white border-t z-50 flex justify-between items-center px-2 py-1">
