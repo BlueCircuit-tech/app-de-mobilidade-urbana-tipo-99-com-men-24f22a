@@ -1670,6 +1670,152 @@
     </style>
 </section>
 
+    <section data-tela="chat-passageiro-motorista" class="hidden">
+      <div class="flex flex-col h-screen bg-gray-50">
+        <!-- Header do Chat -->
+        <div class="bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-3 flex-shrink-0">
+          <button onclick="mostrarTela('acompanhamento-da-corrida')" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors" aria-label="Voltar">
+            <svg class="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <div class="relative">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+              </svg>
+            </div>
+            <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="font-semibold text-gray-900 text-sm leading-tight">Carlos Mendes</h2>
+            <p class="text-xs text-gray-500">Volkswagen Voyage · Cinza · PLQ-7K32</p>
+          </div>
+          <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors" aria-label="Mais opções">
+            <svg class="w-5 h-5 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="6" r="2"/>
+              <circle cx="12" cy="12" r="2"/>
+              <circle cx="12" cy="18" r="2"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Corpo do Chat -->
+        <div id="chat-corpo" class="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+          <!-- Status da Corrida -->
+          <div class="flex justify-center mb-4">
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg px-4 py-2 text-center">
+              <p class="text-xs text-yellow-700 font-medium">🚗 A corrida está em andamento</p>
+              <p class="text-xs text-yellow-600 mt-0.5">Chegada prevista: 12 min</p>
+            </div>
+          </div>
+
+          <!-- Mensagem do Motorista -->
+          <div class="flex gap-2 items-start">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+              </svg>
+            </div>
+            <div class="max-w-[75%]">
+              <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-md px-3.5 py-2.5 shadow-sm">
+                <p class="text-sm text-gray-800">Olá! Acabei de pegar sua encomenda no centro de distribuição. Estou seguindo para o endereço de entrega.</p>
+              </div>
+              <span class="text-[10px] text-gray-400 ml-1 mt-0.5 inline-block">14:32</span>
+            </div>
+          </div>
+
+          <!-- Mensagem do Passageiro -->
+          <div class="flex gap-2 items-start justify-end">
+            <div class="max-w-[75%]">
+              <div class="bg-emerald-500 text-white rounded-2xl rounded-tr-md px-3.5 py-2.5">
+                <p class="text-sm">Perfeito! Tem como checar se o código de entrega do pacote é 4829?</p>
+              </div>
+              <span class="text-[10px] text-gray-400 mr-1 mt-0.5 inline-block text-right w-full">14:33</span>
+            </div>
+          </div>
+
+          <!-- Mensagem do Motorista -->
+          <div class="flex gap-2 items-start">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center flex-shrink-0">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+              </svg>
+            </div>
+            <div class="max-w-[75%]">
+              <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-md px-3.5 py-2.5 shadow-sm">
+                <p class="text-sm text-gray-800">Claro! O código do pacote que estou levando é <strong>4829</strong>. Estou há 5 minutos do seu endereço 👍</p>
+              </div>
+              <span class="text-[10px] text-gray-400 ml-1 mt-0.5 inline-block">14:34</span>
+            </div>
+          </div>
+
+          <!-- Mensagem do Sistema -->
+          <div class="flex justify-center">
+            <div class="bg-gray-100 rounded-full px-4 py-1.5">
+              <p class="text-[11px] text-gray-500 text-center">A viagem terminou. O valor de R$ 18,90 foi transferido para sua conta.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resposta Rápida: Código de Confirmação -->
+        <div id="chat-codigo-entrega" class="hidden px-4 pb-2 flex-shrink-0">
+          <button onclick="chat_passageiro_motorista_confirmarCodigo()" class="w-full bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl px-4 py-3 text-sm font-medium flex items-center gap-2 hover:bg-emerald-100 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+            Confirmar código de entrega: 4829
+          </button>
+        </div>
+
+        <!-- Mensagens Rápidas -->
+        <div id="chat-rapidas" class="bg-white border-t border-gray-200 px-3 py-2.5 flex-shrink-0">
+          <div class="flex gap-2 overflow-x-auto pb-1 scrollbar-hide" style="-ms-overflow-style:none;scrollbar-width:none;">
+            <button onclick="chat_passageiro_motorista_enviarRapida('Estou na porta, pode descer.')" class="flex-shrink-0 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium px-3 py-2 rounded-full transition-colors whitespace-nowrap">
+              Estou na porta
+            </button>
+            <button onclick="chat_passageiro_motorista_enviarRapida('Pode estacionar na vaga ao lado.')" class="flex-shrink-0 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium px-3 py-2 rounded-full transition-colors whitespace-nowrap">
+              Estacione ao lado
+            </button>
+            <button onclick="chat_passageiro_motorista_enviarRapida('Já estou a caminho, 2 minutos.')" class="flex-shrink-0 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium px-3 py-2 rounded-full transition-colors whitespace-nowrap">
+              Chego em 2 min
+            </button>
+            <button onclick="chat_passageiro_motorista_enviarRapida('Qual o código da entrega?')" class="flex-shrink-0 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium px-3 py-2 rounded-full transition-colors whitespace-nowrap">
+              Código da entrega
+            </button>
+            <button onclick="chat_passageiro_motorista_enviarRapida('Obrigado pela corrida!')" class="flex-shrink-0 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium px-3 py-2 rounded-full transition-colors whitespace-nowrap">
+              Obrigado!
+            </button>
+          </div>
+        </div>
+
+        <!-- Input de Texto -->
+        <div class="bg-white border-t border-gray-200 px-3 py-2.5 flex-shrink-0">
+          <div class="flex items-center gap-2">
+            <button onclick="chat_passageiro_motorista_anexar()" class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors flex-shrink-0" aria-label="Anexar">
+              <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 000 2.828 2 2 0 002.828 0L19 9m-6-6l4 4"/>
+              </svg>
+            </button>
+            <div class="flex-1 relative">
+              <input
+                id="chat-input"
+                type="text"
+                placeholder="Digite uma mensagem..."
+                class="w-full bg-gray-100 border-0 rounded-full px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:bg-white transition-all"
+                onkeydown="if(event.key==='Enter') chat_passageiro_motorista_enviar()"
+              />
+            </div>
+            <button onclick="chat_passageiro_motorista_enviar()" class="w-9 h-9 flex items-center justify-center rounded-full bg-emerald-500 hover:bg-emerald-600 text-white transition-colors flex-shrink-0" aria-label="Enviar mensagem">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- TELAS -->
   </main>
   <nav class="navbar fixed bottom-0 left-0 right-0 w-[375px] mx-auto bg-white border-t z-50 flex justify-between items-center px-2 py-1">
